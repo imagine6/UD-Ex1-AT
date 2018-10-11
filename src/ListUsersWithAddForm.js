@@ -4,19 +4,30 @@ import ListUsers from './ListUsers';
 
 class ListUsersWithAddForm extends Component {
   state = {
-    users: [],
+    users: [
+      {
+        fname: 'Tobi',
+        lname: 'Lang',
+        uname: 'tobiaslang',
+        games: 0
+      }
+    ],
   };
 
   handleAddUser = user => {
-    this.setState(prevState => ({ users: [...prevState.users, user] }));
+    
+    var found = this.state.users.filter(user1 => user1.uname === user.uname);
+    if (found.length >= 1) alert("Username already in use, please use another username");
+    else this.setState(prevState => ({ users: [...prevState.users, user] }));
+      
   };
 
 	  render() {
     return (
       <div>
-      	ListUsersWithAddForm
+      	<h1>ListUsersWithAddForm</h1>
       	<AddUserForm onAddUser={this.handleAddUser} />
-      	<ListUsers />
+      	<ListUsers users={this.state.users}/>
       </div>  
     )
   }

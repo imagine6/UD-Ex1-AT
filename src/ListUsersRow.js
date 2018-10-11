@@ -6,7 +6,15 @@ class ListUsersRow extends Component {
     return (
       <div>
       	ListUsersRow
-      	<ListGamesPlayed />
+      <ol className='contact-list'>
+          {this.props.users.map((user) => {
+            return this.props.showhidegames > 0 ? 
+      			<li key={user.uname}>{user.uname} played {user.games} games.</li>
+			:
+				<li key={user.uname}>{user.uname} played * games.</li>
+    	})}
+        </ol>
+
       </div>  
     )
   }
